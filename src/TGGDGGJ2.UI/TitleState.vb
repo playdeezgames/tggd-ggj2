@@ -16,9 +16,16 @@ Friend Class TitleState
 
     Public Sub Refresh() Implements IUIState.Refresh
         buffer.Fill(239)
-        buffer.WriteText((4, 1), "ADELINE'S  SQUISHMALLOWS")
-        buffer.WriteText((0, 3), "A PRODUCTION OF THEGRUMPYGAMEDEV")
-        buffer.WriteText((4, 4), "FOR GIRLY GAME JAM #2")
+        buffer.WriteCenteredText(1, "ADELINE'S  SQUISHMALLOWS")
+        buffer.WriteCenteredText(3, "A PRODUCTION OF THEGRUMPYGAMEDEV")
+        buffer.WriteCenteredText(4, "FOR GIRLY GAME JAM #2")
+        buffer.WriteCenteredText(6, "W,Z,UP ARROW: UP")
+        buffer.WriteCenteredText(7, "S,DOWN ARROW: DOWN")
+        buffer.WriteCenteredText(8, "A,Q,LEFT ARROW: LEFT")
+        buffer.WriteCenteredText(9, "D,RIGHT ARROW: RIGHT")
+        buffer.WriteCenteredText(10, "SPACE: ACTION")
+        buffer.WriteCenteredText(11, "BACKSPACE: CANCEL")
+        buffer.WriteCenteredText(15, "PRESS <ACTION>")
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand

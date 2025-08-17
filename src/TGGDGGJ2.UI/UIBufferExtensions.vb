@@ -32,6 +32,7 @@ Friend Module UIBufferExtensions
             {"x"c, 24},
             {"y"c, 25},
             {"z"c, 26},
+            {"_"c, 32},
             {"@"c, 64},
             {"A"c, 65},
             {"B"c, 66},
@@ -107,5 +108,9 @@ Friend Module UIBufferExtensions
             column = column Mod buffer.Columns
         Next
         Return (column, row)
+    End Function
+    <Extension>
+    Friend Function WriteCenteredText(buffer As IUIBuffer(Of Integer), row As Integer, text As String) As (Column As Integer, Row As Integer)
+        WriteText(buffer, ((buffer.Columns - text.Length) \ 2, row), text)
     End Function
 End Module
