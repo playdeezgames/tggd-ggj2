@@ -15,4 +15,8 @@
     <ProjectReference Include="..\TGGDGGJ2.UI\TGGDGGJ2.UI.vbproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

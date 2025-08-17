@@ -2,4 +2,36 @@
 
 <PageTitle>OHAI!</PageTitle>
 
-<h1>OHAI!</h1>
+<table class="trs80-table">
+	@foreach (var row in Enumerable.Range(0,16))
+	{
+		<tr>
+			@foreach(var column in Enumerable.Range(0,32))
+			{
+				<td class="trs80-td" style="background-position: @GetBackgroundPosition(column,row)"></td>
+			}
+		</tr>
+	}
+</table>
+@code{
+	IUIContext context = new UIContext(BUFFER_WIDTH, BUFFER_HEIGHT, FrameBuffer);
+	const int BUFFER_WIDTH = 32;
+	const int BUFFER_HEIGHT = 16;
+	const int CHARACTER_COLUMNS = 32;
+	const int CHARACTER_WIDTH = 32;
+	const int CHARACTER_HEIGHT = 48;
+	static int[] FrameBuffer = new int[BUFFER_HEIGHT * BUFFER_WIDTH];
+	string GetBackgroundPosition(int column, int row)
+	{
+		int character = FrameBuffer[column + row * BUFFER_WIDTH];
+		int characterX = -(character % CHARACTER_COLUMNS) * CHARACTER_WIDTH;
+		int characterY = -(character / CHARACTER_COLUMNS) * CHARACTER_HEIGHT;
+		return $"{characterX}px {characterY}px";
+	}
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		context.Refresh();
+		//await ProcessSfxAsync();
+	}
+}
