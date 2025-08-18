@@ -8,9 +8,10 @@ Public Class UIContext
     ReadOnly buffer As IUIBuffer(Of Integer)
     Private state As IUIState = Nothing
     Private ReadOnly sfxQueue As New Queue(Of String)
+    Private ReadOnly worldData As New WorldData
     Private ReadOnly Property World As IWorld
         Get
-            Return Nothing
+            Return New Business.World(worldData, AddressOf PlaySfx)
         End Get
     End Property
 

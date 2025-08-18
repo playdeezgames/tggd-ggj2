@@ -30,4 +30,11 @@
     Public Sub Fill(hue As TPixel) Implements IUIBuffer(Of TPixel).Fill
         Fill(0, 0, columns, rows, hue)
     End Sub
+
+    Public Function GetPixel(column As Integer, row As Integer) As TPixel Implements IUIBuffer(Of TPixel).GetPixel
+        If column >= 0 AndAlso column < Columns AndAlso row >= 0 AndAlso row < Rows Then
+            Return pixelBuffer(column + row * Columns)
+        End If
+        Return CType(Nothing, TPixel)
+    End Function
 End Class

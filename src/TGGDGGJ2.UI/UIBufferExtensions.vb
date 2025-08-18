@@ -113,4 +113,12 @@ Friend Module UIBufferExtensions
     Friend Function WriteCenteredText(buffer As IUIBuffer(Of Integer), row As Integer, text As String) As (Column As Integer, Row As Integer)
         WriteText(buffer, ((buffer.Columns - text.Length) \ 2, row), text)
     End Function
+    <Extension>
+    Friend Sub Invert(buffer As IUIBuffer(Of Integer), column As Integer, row As Integer, columns As Integer, rows As Integer)
+        For Each x In Enumerable.Range(column, columns)
+            For Each y In Enumerable.Range(row, rows)
+                buffer.SetPixel(x, y, buffer.GetPixel(x, y) Xor 64)
+            Next
+        Next
+    End Sub
 End Module

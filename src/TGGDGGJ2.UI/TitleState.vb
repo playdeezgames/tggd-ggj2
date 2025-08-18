@@ -25,7 +25,8 @@ Friend Class TitleState
         buffer.WriteCenteredText(9, "D,RIGHT ARROW: RIGHT")
         buffer.WriteCenteredText(10, "SPACE: ACTION")
         buffer.WriteCenteredText(11, "BACKSPACE: CANCEL")
-        buffer.WriteCenteredText(15, "PRESS <ACTION>")
+        buffer.WriteCenteredText(buffer.Rows - 1, "         PRESS <ACTION>         ")
+        buffer.Invert(0, buffer.Rows - 1, buffer.Columns, 1)
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand
