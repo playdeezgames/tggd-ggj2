@@ -1,0 +1,12 @@
+﻿Friend Module CharacterTypes
+    Friend ReadOnly Descriptors As IReadOnlyDictionary(Of String, CharacterTypeDescriptor) =
+        New List(Of CharacterTypeDescriptor) From
+        {
+            New AdelineCharacterTypeDescriptor()
+        }.ToDictionary(Function(x) x.CharacterType, Function(x) x)
+    Friend ReadOnly Property All As IEnumerable(Of String)
+        Get
+            Return Descriptors.Keys
+        End Get
+    End Property
+End Module

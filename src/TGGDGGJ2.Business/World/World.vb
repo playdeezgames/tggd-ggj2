@@ -26,4 +26,15 @@ Public Class World
         result.Initialize()
         Return result
     End Function
+
+    Public Function CreateCharacter(characterType As String) As ICharacter Implements IWorld.CreateCharacter
+        Dim characterId = EntityData.Characters.Count
+        EntityData.Characters.Add(New CharacterData With
+                                 {
+                                    .CharacterType = characterType
+                                 })
+        Dim result As ICharacter = New Character(Data, characterId, PlaySfx)
+        result.Initialize()
+        Return result
+    End Function
 End Class

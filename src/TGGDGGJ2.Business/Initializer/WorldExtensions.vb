@@ -5,12 +5,18 @@ Public Module WorldExtensions
     Public Sub Initialize(world As IWorld)
         world.Clear()
         InitializeLocations(world)
+        InitializeCharacters(world)
+    End Sub
+
+    Private Sub InitializeCharacters(world As IWorld)
+        For Each characterType In CharacterTypes.All
+            world.CreateCharacter(characterType)
+        Next
     End Sub
 
     Private Sub InitializeLocations(world As IWorld)
         For Each locationType In LocationTypes.All
-            Dim location As ILocation = world.CreateLocation(locationType)
-            location.Initialize()
+            world.CreateLocation(locationType)
         Next
     End Sub
 End Module
