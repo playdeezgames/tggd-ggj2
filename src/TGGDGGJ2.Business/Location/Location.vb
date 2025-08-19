@@ -20,4 +20,8 @@ Public Class Location
             Return Data.Locations(LocationId)
         End Get
     End Property
+
+    Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
+        EntityData.Characters.Add(character.CharacterId)
+    End Sub
 End Class

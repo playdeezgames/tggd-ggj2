@@ -16,6 +16,9 @@ Friend Class NavigationState
     Public Sub Refresh() Implements IUIState.Refresh
         buffer.Fill(MagentaBlock)
         buffer.WriteInvertedCenteredText(0, "NAVIGATION")
+        Dim character = world.Avatar
+        buffer.WriteText((0, 1), $"CHARACTER: {character.CharacterType}")
+        buffer.WriteText((0, 2), $"LOCATION: {character.Location.LocationType}")
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand

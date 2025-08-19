@@ -17,6 +17,12 @@ Public Class Character
         End Get
     End Property
 
+    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+        Get
+            Return New Location(Data, EntityData.LocationId, PlaySfx)
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property EntityData As CharacterData
         Get
             Return Data.Characters(CharacterId)

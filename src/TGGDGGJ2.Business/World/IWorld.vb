@@ -2,5 +2,7 @@ Public Interface IWorld
     Inherits IEntity
     Sub Clear()
     Function CreateLocation(locationType As String) As ILocation
-    Function CreateCharacter(characterType As String) As ICharacter
+    ReadOnly Property Locations As IEnumerable(Of ILocation)
+    Function CreateCharacter(characterType As String, location As ILocation) As ICharacter
+    Property Avatar As ICharacter
 End Interface

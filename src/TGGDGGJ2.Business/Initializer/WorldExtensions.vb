@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports TGGD.Business
 
 Public Module WorldExtensions
     <Extension>
@@ -10,7 +11,9 @@ Public Module WorldExtensions
 
     Private Sub InitializeCharacters(world As IWorld)
         For Each characterType In CharacterTypes.All
-            world.CreateCharacter(characterType)
+            Dim descriptor = characterType.ToCharacterTypeDescriptor
+            Dim candidates = world.Locations.Where(Function(x) descriptor.CanSpawn(x))
+            world.CreateCharacter(characterType, RNG.FromEnumerable(candidates))
         Next
     End Sub
 
