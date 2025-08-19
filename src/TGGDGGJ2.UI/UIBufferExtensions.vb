@@ -121,4 +121,9 @@ Friend Module UIBufferExtensions
             Next
         Next
     End Sub
+    <Extension>
+    Friend Function WriteInvertedCenteredText(buffer As IUIBuffer(Of Integer), row As Integer, text As String) As (Column As Integer, Row As Integer)
+        WriteText(buffer, ((buffer.Columns - text.Length) \ 2, row), text)
+        Invert(buffer, 0, row, buffer.Columns, 1)
+    End Function
 End Module

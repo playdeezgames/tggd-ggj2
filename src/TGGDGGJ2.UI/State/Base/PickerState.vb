@@ -16,7 +16,7 @@ Friend MustInherit Class PickerState
     End Sub
 
     Public Sub Refresh() Implements IUIState.Refresh
-        buffer.Fill(239)
+        buffer.Fill(MagentaBlock)
         Dim y = buffer.Rows \ 2 - menuItemIndex
         For Each menuItem In menuItems
             If y > 0 AndAlso y < buffer.Rows Then

@@ -32,8 +32,10 @@ Friend Class MainMenuState
                 Return New StoryState(buffer, world, playSfx)
             Case ABOUT_TEXT
                 Return New AboutState(buffer, world, playSfx)
+            Case EMBARK_TEXT
+                Return New EmbarkState(buffer, world, playSfx)
             Case Else
-                Return Me
+                Throw New NotImplementedException
         End Select
     End Function
 End Class

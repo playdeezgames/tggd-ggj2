@@ -1,4 +1,4 @@
-﻿Public Module SquishmallowNames
+﻿Public Module SquishmallowTypes
     Public ReadOnly Names As IReadOnlyList(Of String) =
         New List(Of String) From
         {

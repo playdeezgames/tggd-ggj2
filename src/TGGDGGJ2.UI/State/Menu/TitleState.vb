@@ -15,7 +15,7 @@ Friend Class TitleState
     End Sub
 
     Public Sub Refresh() Implements IUIState.Refresh
-        buffer.Fill(239)
+        buffer.Fill(MagentaBlock)
         buffer.WriteCenteredText(1, "ADELINE'S  SQUISHMALLOWS")
         buffer.WriteCenteredText(3, "A PRODUCTION OF THEGRUMPYGAMEDEV")
         buffer.WriteCenteredText(4, "FOR GIRLY GAME JAM #2")
