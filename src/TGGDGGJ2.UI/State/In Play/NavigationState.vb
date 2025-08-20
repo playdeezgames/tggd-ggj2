@@ -1,4 +1,5 @@
 ﻿Imports TGGD.UI
+Imports TGGDGGJ2.Business
 
 Friend Class NavigationState
     Implements IUIState
@@ -17,8 +18,8 @@ Friend Class NavigationState
         buffer.Fill(MagentaBlock)
         buffer.WriteInvertedCenteredText(0, "NAVIGATION")
         Dim character = world.Avatar
-        buffer.WriteText((0, 1), $"CHARACTER: {character.CharacterType}")
-        buffer.WriteText((0, 2), $"LOCATION: {character.Location.LocationType}")
+        buffer.WriteText((0, 1), $"CHARACTER: {character.GetMetadata(MetadataType.Name)}")
+        buffer.WriteText((0, 2), $"LOCATION: {character.Location.GetMetadata(MetadataType.Name)}")
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand
