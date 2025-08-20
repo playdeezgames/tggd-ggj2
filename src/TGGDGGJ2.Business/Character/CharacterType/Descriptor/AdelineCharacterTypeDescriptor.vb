@@ -6,6 +6,7 @@
     End Sub
 
     Public Overrides Sub OnInitialize(character As ICharacter)
+        character.SetMetadata(MetadataType.Name, "ADELINE")
         character.World.Avatar = character
     End Sub
 

@@ -17,6 +17,14 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
         Return Nothing
     End Function
 
+    Public Sub SetMetadata(metadataType As String, value As String) Implements IEntity.SetMetadata
+        If String.IsNullOrWhiteSpace(value) Then
+            EntityData.Metadatas.Remove(metadataType)
+        Else
+            EntityData.Metadatas(metadataType) = value
+        End If
+    End Sub
+
     Protected MustOverride ReadOnly Property EntityData As TEntityData
     Public ReadOnly Property World As IWorld Implements IEntity.World
         Get
