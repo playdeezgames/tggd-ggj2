@@ -16,10 +16,9 @@ Friend Class NavigationState
 
     Public Sub Refresh() Implements IUIState.Refresh
         buffer.Fill(MagentaBlock)
-        buffer.WriteInvertedCenteredText(0, "NAVIGATION")
+        buffer.WriteInvertedCenteredText(0, $"DAY {world.GetStatistic(StatisticType.Day)} HOUR {world.GetStatistic(StatisticType.Hour)}")
         Dim character = world.Avatar
-        buffer.WriteText((0, 1), $"CHARACTER: {character.GetMetadata(MetadataType.Name)}")
-        buffer.WriteText((0, 2), $"LOCATION: {character.Location.GetMetadata(MetadataType.Name)}")
+        buffer.WriteText((0, 1), $"LOCATION: {character.Location.GetMetadata(MetadataType.Name)}")
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand

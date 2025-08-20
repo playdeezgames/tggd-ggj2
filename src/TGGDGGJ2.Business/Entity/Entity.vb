@@ -25,6 +25,18 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
         End If
     End Sub
 
+    Public Function GetStatistic(statisticType As String) As Integer Implements IEntity.GetStatistic
+        Return EntityData.Statistics(statisticType)
+    End Function
+
+    Public Sub SetStatistic(statisticType As String, value As Integer?) Implements IEntity.SetStatistic
+        If value.HasValue Then
+            EntityData.Statistics(statisticType) = value.Value
+        Else
+            EntityData.Statistics.Remove(statisticType)
+        End If
+    End Sub
+
     Protected MustOverride ReadOnly Property EntityData As TEntityData
     Public ReadOnly Property World As IWorld Implements IEntity.World
         Get

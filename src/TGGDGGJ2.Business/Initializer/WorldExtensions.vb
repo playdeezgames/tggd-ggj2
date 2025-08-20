@@ -5,6 +5,8 @@ Public Module WorldExtensions
     <Extension>
     Public Sub Initialize(world As IWorld)
         world.Clear()
+        world.SetStatistic(StatisticType.Day, 1)
+        world.SetStatistic(StatisticType.Hour, 6)
         InitializeLocations(world)
         InitializeCharacters(world)
     End Sub
