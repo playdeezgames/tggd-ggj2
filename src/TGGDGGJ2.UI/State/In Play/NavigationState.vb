@@ -35,6 +35,7 @@ Friend Class NavigationState
     Private Sub RefreshMenuItems()
         If menuItemRefresh Then
             menuItems.Clear()
+            menuItems.AddRange(world.Avatar.AvailableVerbs)
             menuItems.Add((GAME_MENU_IDENTIFIER, GAME_MENU_TEXT))
             menuItemIndex = 0
             menuItemRefresh = False

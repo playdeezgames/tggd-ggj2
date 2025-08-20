@@ -23,6 +23,16 @@ Public Class Character
         End Get
     End Property
 
+    Public ReadOnly Property AvailableVerbs As IEnumerable(Of (Identifier As String, Text As String)) Implements ICharacter.AvailableVerbs
+        Get
+            Return VerbTypes.All.Where(Function(x) CanPerform(x)).Select(Function(x) (x, x.ToVerbTypeDescriptor.Caption))
+        End Get
+    End Property
+
+    Private Function CanPerform(verbType As String) As Boolean
+        Return verbType.ToVerbTypeDescriptor.CanPerform(Me)
+    End Function
+
     Protected Overrides ReadOnly Property EntityData As CharacterData
         Get
             Return Data.Characters(CharacterId)
