@@ -38,6 +38,10 @@ Public Class World
         Data.AvatarId = Nothing
     End Sub
 
+    Public Sub Abandon() Implements IWorld.Abandon
+        Clear()
+    End Sub
+
     Public Function CreateLocation(locationType As String) As ILocation Implements IWorld.CreateLocation
         Dim locationId = EntityData.Locations.Count
         EntityData.Locations.Add(New LocationData With

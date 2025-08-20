@@ -5,4 +5,5 @@ Public Interface IWorld
     ReadOnly Property Locations As IEnumerable(Of ILocation)
     Function CreateCharacter(characterType As String, location As ILocation) As ICharacter
     Property Avatar As ICharacter
+    Sub Abandon()
 End Interface
