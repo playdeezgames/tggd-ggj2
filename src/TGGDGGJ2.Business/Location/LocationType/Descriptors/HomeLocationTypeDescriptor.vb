@@ -2,7 +2,7 @@
     Inherits LocationTypeDescriptor
 
     Public Sub New()
-        MyBase.New(Business.LocationType.Home)
+        MyBase.New(Business.LocationType.Home, 1)
     End Sub
 
     Public Overrides Sub OnInitialize(location As ILocation)

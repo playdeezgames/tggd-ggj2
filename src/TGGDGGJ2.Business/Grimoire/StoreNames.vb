@@ -1,4 +1,4 @@
-﻿Friend Module ShoppeNames
+﻿Friend Module StoreNames
     Public ReadOnly Names As IReadOnlyList(Of String) =
         New List(Of String) From
         {

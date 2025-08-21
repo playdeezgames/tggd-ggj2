@@ -1,12 +1,16 @@
 ﻿Imports System.Runtime.CompilerServices
 
-Friend Module LocationExtensions
+Public Module LocationExtensions
     <Extension>
-    Function GetDescriptor(location As ILocation) As LocationTypeDescriptor
+    Friend Function GetDescriptor(location As ILocation) As LocationTypeDescriptor
         Return LocationTypes.Descriptors(location.LocationType)
     End Function
     <Extension>
-    Sub Initialize(location As ILocation)
+    Friend Sub Initialize(location As ILocation)
         location.GetDescriptor().OnInitialize(location)
     End Sub
+    <Extension>
+    Public Function GetName(location As ILocation) As String
+        Return location.GetMetadata(MetadataType.Name)
+    End Function
 End Module

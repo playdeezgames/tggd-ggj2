@@ -21,7 +21,10 @@ Public Module WorldExtensions
 
     Private Sub InitializeLocations(world As IWorld)
         For Each locationType In LocationTypes.All
-            world.CreateLocation(locationType)
+            Dim descriptor = locationType.ToLocationTypeDescriptor()
+            For Each dummy In Enumerable.Range(0, descriptor.LocationCount)
+                world.CreateLocation(locationType)
+            Next
         Next
     End Sub
 End Module
