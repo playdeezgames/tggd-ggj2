@@ -17,4 +17,11 @@ Public Module LocationExtensions
     Public Function GetDisplayName(location As ILocation) As String
         Return location.GetName().ToUpper
     End Function
+    <Extension>
+    Public Function IsOpen(location As ILocation) As Boolean
+        Dim openHour = location.GetStatistic(StatisticType.OpenHour)
+        Dim closeHour = location.GetStatistic(StatisticType.CloseHour)
+        Dim currentHour = location.World.GetStatistic(StatisticType.Hour)
+        Return currentHour >= openHour AndAlso currentHour < closeHour
+    End Function
 End Module

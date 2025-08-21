@@ -25,7 +25,10 @@ Friend Class NavigationState
         buffer.Fill(MagentaBlock)
         buffer.WriteInvertedCenteredText(0, $"DAY {world.GetStatistic(StatisticType.Day)} HOUR {world.GetStatistic(StatisticType.Hour)}")
         Dim character = world.Avatar
-        buffer.WriteText((0, 1), $"LOCATION: {character.Location.GetDisplayName()}")
+        Dim position = buffer.WriteLine((0, 1), $"LOCATION: {character.Location.GetDisplayName()}")
+        For Each line In character.Location.Description
+            position = buffer.WriteLine(position, line)
+        Next
         Dim menuItem = menuItems(menuItemIndex)
         buffer.WriteText((0, buffer.Rows - 1), "<")
         buffer.WriteText((buffer.Columns - 1, buffer.Rows - 1), ">")

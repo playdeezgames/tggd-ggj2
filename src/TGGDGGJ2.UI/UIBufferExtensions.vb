@@ -110,6 +110,14 @@ Friend Module UIBufferExtensions
         Return (column, row)
     End Function
     <Extension>
+    Friend Function WriteLine(buffer As IUIBuffer(Of Integer), position As (Column As Integer, Row As Integer), text As String) As (Column As Integer, Row As Integer)
+        position = WriteText(buffer, position, text)
+        If position.Column = 0 Then
+            Return position
+        End If
+        Return (0, (position.Row + 1) Mod buffer.Rows)
+    End Function
+    <Extension>
     Friend Function WriteCenteredText(buffer As IUIBuffer(Of Integer), row As Integer, text As String) As (Column As Integer, Row As Integer)
         WriteText(buffer, ((buffer.Columns - text.Length) \ 2, row), text)
     End Function

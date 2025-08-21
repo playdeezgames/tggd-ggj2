@@ -4,4 +4,5 @@
     ReadOnly Property LocationType As String
     Sub AddCharacter(character As ICharacter)
     Sub RemoveCharacter(character As ICharacter)
+    ReadOnly Property Description As IEnumerable(Of String)
 End Interface
