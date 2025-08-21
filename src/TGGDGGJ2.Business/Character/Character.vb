@@ -17,10 +17,18 @@ Public Class Character
         End Get
     End Property
 
-    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+    Public Property Location As ILocation Implements ICharacter.Location
         Get
             Return New Location(Data, EntityData.LocationId, PlaySfx)
         End Get
+        Set(value As ILocation)
+            Dim oldLocation = Me.Location
+            If oldLocation.LocationId <> value.LocationId Then
+                oldLocation.RemoveCharacter(Me)
+                EntityData.LocationId = value.LocationId
+                value.AddCharacter(Me)
+            End If
+        End Set
     End Property
 
     Public ReadOnly Property AvailableVerbs As IEnumerable(Of (Identifier As String, Text As String)) Implements ICharacter.AvailableVerbs
@@ -31,6 +39,10 @@ Public Class Character
 
     Private Function CanPerform(verbType As String) As Boolean
         Return verbType.ToVerbTypeDescriptor.CanPerform(Me)
+    End Function
+
+    Public Function Perform(verbType As String) As IDialog Implements ICharacter.Perform
+        Return verbType.ToVerbTypeDescriptor.Perform(Me)
     End Function
 
     Protected Overrides ReadOnly Property EntityData As CharacterData

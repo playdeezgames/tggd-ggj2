@@ -25,7 +25,7 @@ Friend Class NavigationState
         buffer.Fill(MagentaBlock)
         buffer.WriteInvertedCenteredText(0, $"DAY {world.GetStatistic(StatisticType.Day)} HOUR {world.GetStatistic(StatisticType.Hour)}")
         Dim character = world.Avatar
-        buffer.WriteText((0, 1), $"LOCATION: {character.Location.GetMetadata(MetadataType.Name)}")
+        buffer.WriteText((0, 1), $"LOCATION: {character.Location.GetDisplayName()}")
         Dim menuItem = menuItems(menuItemIndex)
         buffer.WriteText((0, buffer.Rows - 1), "<")
         buffer.WriteText((buffer.Columns - 1, buffer.Rows - 1), ">")
@@ -57,12 +57,12 @@ Friend Class NavigationState
         End Select
     End Function
 
-    Private Function HandleMenuItem(identifier As String) As IUIState
-        Select Case identifier
+    Private Function HandleMenuItem(verbType As String) As IUIState
+        Select Case verbType
             Case GAME_MENU_IDENTIFIER
                 Return New GameMenuState(buffer, world, playSfx)
             Case Else
-                Return Me
+                Return New DialogState(buffer, world, playSfx, world.Avatar.Perform(verbType))
         End Select
     End Function
 End Class

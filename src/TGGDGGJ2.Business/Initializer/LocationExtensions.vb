@@ -13,4 +13,8 @@ Public Module LocationExtensions
     Public Function GetName(location As ILocation) As String
         Return location.GetMetadata(MetadataType.Name)
     End Function
+    <Extension>
+    Public Function GetDisplayName(location As ILocation) As String
+        Return location.GetName().ToUpper
+    End Function
 End Module

@@ -8,4 +8,8 @@
     Public Overrides Function CanPerform(character As ICharacter) As Boolean
         Return character.Location.LocationType = Business.LocationType.Home
     End Function
+
+    Public Overrides Function Perform(character As ICharacter) As IDialog
+        Return New GoToStoreDialog(character)
+    End Function
 End Class

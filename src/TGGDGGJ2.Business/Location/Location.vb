@@ -24,4 +24,8 @@ Public Class Location
     Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
         EntityData.Characters.Add(character.CharacterId)
     End Sub
+
+    Public Sub RemoveCharacter(character As ICharacter) Implements ILocation.RemoveCharacter
+        EntityData.Characters.Remove(character.CharacterId)
+    End Sub
 End Class

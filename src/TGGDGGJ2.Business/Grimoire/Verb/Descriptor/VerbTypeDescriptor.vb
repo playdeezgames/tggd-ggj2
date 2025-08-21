@@ -6,4 +6,5 @@
         Me.Caption = caption
     End Sub
     MustOverride Function CanPerform(character As ICharacter) As Boolean
+    MustOverride Function Perform(character As ICharacter) As IDialog
 End Class
