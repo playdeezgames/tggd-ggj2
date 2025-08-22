@@ -6,4 +6,8 @@ Public Interface IWorld
     Function CreateCharacter(characterType As String, location As ILocation) As ICharacter
     Property Avatar As ICharacter
     Sub Abandon()
+    Sub AddMessage(ParamArray lines As String())
+    ReadOnly Property HasMessage As Boolean
+    Sub DismissMessage()
+    ReadOnly Property CurrentMessage As IMessage
 End Interface

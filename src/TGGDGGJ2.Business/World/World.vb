@@ -26,6 +26,18 @@ Public Class World
         End Set
     End Property
 
+    Public ReadOnly Property HasMessage As Boolean Implements IWorld.HasMessage
+        Get
+            Return Data.Messages.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property CurrentMessage As IMessage Implements IWorld.CurrentMessage
+        Get
+            Return New Message(Data)
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property EntityData As WorldData
         Get
             Return Data
@@ -40,6 +52,16 @@ Public Class World
 
     Public Sub Abandon() Implements IWorld.Abandon
         Clear()
+    End Sub
+
+    Public Sub AddMessage(ParamArray lines() As String) Implements IWorld.AddMessage
+        Data.Messages.Add(New MessageData With {.Lines = lines.ToList})
+    End Sub
+
+    Public Sub DismissMessage() Implements IWorld.DismissMessage
+        If Data.Messages.Any Then
+            Data.Messages.RemoveAt(0)
+        End If
     End Sub
 
     Public Function CreateLocation(locationType As String) As ILocation Implements IWorld.CreateLocation

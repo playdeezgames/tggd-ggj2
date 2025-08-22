@@ -11,6 +11,7 @@
 
     Public Overrides Function Perform(character As ICharacter) As IDialog
         character.Location = character.World.Locations.Single(Function(x) x.LocationType = Home)
+        character.AddMessage("YOU ARRIVE BACK HOME.")
         Return Nothing
     End Function
 End Class

@@ -45,9 +45,21 @@ Public Class Character
         Return verbType.ToVerbTypeDescriptor.Perform(Me)
     End Function
 
+    Public Sub AddMessage(ParamArray lines() As String) Implements ICharacter.AddMessage
+        If IsAvatar Then
+            World.AddMessage(lines)
+        End If
+    End Sub
+
     Protected Overrides ReadOnly Property EntityData As CharacterData
         Get
             Return Data.Characters(CharacterId)
+        End Get
+    End Property
+
+    Public ReadOnly Property IsAvatar As Boolean Implements ICharacter.IsAvatar
+        Get
+            Return Data.AvatarId.HasValue AndAlso Data.AvatarId.Value = CharacterId
         End Get
     End Property
 End Class
