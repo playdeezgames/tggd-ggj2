@@ -7,6 +7,8 @@ Public Module WorldExtensions
         world.Clear()
         world.SetStatistic(StatisticType.Day, 1)
         world.SetStatistic(StatisticType.Hour, 6)
+        world.SetStatisticMinimum(StatisticType.Hour, 6)
+        world.SetStatisticMaximum(StatisticType.Hour, 22)
         InitializeLocations(world)
         InitializeCharacters(world)
     End Sub

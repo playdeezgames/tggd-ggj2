@@ -1,0 +1,18 @@
+﻿Friend Class DoChoresVerbTypeDescriptor
+    Inherits VerbTypeDescriptor
+
+    Public Sub New()
+        MyBase.New(Business.VerbType.DoChores, "DO CHORES")
+    End Sub
+
+    Public Overrides Function CanPerform(character As ICharacter) As Boolean
+        Return character.Location.LocationType = LocationType.Home AndAlso character.World.GetStatistic(StatisticType.Hour) < character.World.GetStatisticMaximum(StatisticType.Hour)
+    End Function
+
+    Public Overrides Function Perform(character As ICharacter) As IDialog
+        character.ChangeStatistic(StatisticType.Money, 1)
+        character.World.ChangeStatistic(StatisticType.Hour, 1)
+        character.AddMessage("YOU DO SOME CHORES!", "YOU EARN $1", $"YOU HAVE ${character.GetStatistic(StatisticType.Money)}")
+        Return Nothing
+    End Function
+End Class

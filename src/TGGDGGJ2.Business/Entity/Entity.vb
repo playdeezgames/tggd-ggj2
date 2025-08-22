@@ -31,7 +31,7 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
 
     Public Sub SetStatistic(statisticType As String, value As Integer?) Implements IEntity.SetStatistic
         If value.HasValue Then
-            EntityData.Statistics(statisticType) = value.Value
+            EntityData.Statistics(statisticType) = Math.Clamp(value.Value, GetStatisticMinimum(statisticType), GetStatisticMaximum(statisticType))
         Else
             EntityData.Statistics.Remove(statisticType)
         End If
@@ -44,6 +44,35 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
             EntityData.StatisticMinimums(statisticType) = value
         End If
     End Sub
+
+    Public Sub SetStatisticMaximum(statisticType As String, value As Integer) Implements IEntity.SetStatisticMaximum
+        If value = Integer.MaxValue Then
+            EntityData.StatisticMaximums.Remove(statisticType)
+        Else
+            EntityData.StatisticMaximums(statisticType) = value
+        End If
+    End Sub
+
+    Public Function GetStatisticMinimum(statisticType As String) As Integer Implements IEntity.GetStatisticMinimum
+        Dim result As Integer
+        If EntityData.StatisticMinimums.TryGetValue(statisticType, result) Then
+            Return result
+        End If
+        Return Integer.MinValue
+    End Function
+
+    Public Function GetStatisticMaximum(statisticType As String) As Integer Implements IEntity.GetStatisticMaximum
+        Dim result As Integer
+        If EntityData.StatisticMaximums.TryGetValue(statisticType, result) Then
+            Return result
+        End If
+        Return Integer.MaxValue
+    End Function
+
+    Public Function ChangeStatistic(statisticType As String, delta As Integer) As Integer Implements IEntity.ChangeStatistic
+        SetStatistic(statisticType, GetStatistic(statisticType) + delta)
+        Return GetStatistic(statisticType)
+    End Function
 
     Protected MustOverride ReadOnly Property EntityData As TEntityData
     Public ReadOnly Property World As IWorld Implements IEntity.World

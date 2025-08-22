@@ -5,4 +5,8 @@
     Function GetStatistic(statisticType As String) As Integer
     Sub SetStatistic(statisticType As String, value As Integer?)
     Sub SetStatisticMinimum(statisticType As String, value As Integer)
+    Sub SetStatisticMaximum(statisticType As String, value As Integer)
+    Function GetStatisticMinimum(statisticType As String) As Integer
+    Function GetStatisticMaximum(statisticType As String) As Integer
+    Function ChangeStatistic(statisticType As String, delta As Integer) As Integer
 End Interface
