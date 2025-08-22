@@ -4,6 +4,7 @@ Friend Module VerbTypes
     Friend ReadOnly Descriptors As IReadOnlyDictionary(Of String, VerbTypeDescriptor) =
         New List(Of VerbTypeDescriptor) From
         {
+            New GoHomeVerbTypeDescriptor(),
             New GoToStoreVerbTypeDescriptor()
         }.ToDictionary(Function(x) x.VerbType, Function(x) x)
     Friend ReadOnly Property All As IEnumerable(Of String)

@@ -65,7 +65,11 @@ Friend Class NavigationState
             Case GAME_MENU_IDENTIFIER
                 Return New GameMenuState(buffer, world, playSfx)
             Case Else
-                Return New DialogState(buffer, world, playSfx, world.Avatar.Perform(verbType))
+                Dim dialog = world.Avatar.Perform(verbType)
+                If dialog IsNot Nothing Then
+                    Return New DialogState(buffer, world, playSfx, dialog)
+                End If
+                Return NeutralState.DetermineState(buffer, world, playSfx)
         End Select
     End Function
 End Class
