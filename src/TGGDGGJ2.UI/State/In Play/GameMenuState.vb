@@ -19,6 +19,7 @@ Friend Class GameMenuState
         MyBase.New(
             buffer,
             "GAME MENU",
+            {},
             {
                 (CONTINUE_IDENTIFIER, CONTINUE_TEXT),
                 (ABANDON_IDENTIFIER, ABANDON_TEXT)

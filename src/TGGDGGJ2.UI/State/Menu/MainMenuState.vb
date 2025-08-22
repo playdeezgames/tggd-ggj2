@@ -13,6 +13,7 @@ Friend Class MainMenuState
         MyBase.New(
             buffer,
             "MAIN MENU",
+            {},
             {
                 (EMBARK_TEXT, EMBARK_TEXT),
                 (STORY_TEXT, STORY_TEXT),

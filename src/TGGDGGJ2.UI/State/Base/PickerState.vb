@@ -4,30 +4,38 @@ Friend MustInherit Class PickerState
     Implements IUIState
     Protected ReadOnly buffer As IUIBuffer(Of Integer)
     Private ReadOnly caption As String
+    Private ReadOnly lines As String()
     Private ReadOnly menuItems As (Identifier As String, Text As String)()
     Private menuItemIndex As Integer = 0
     Sub New(
            buffer As IUIBuffer(Of Integer),
            caption As String,
+           lines As String(),
            menuItems As (Identifier As String, Text As String)())
         Me.buffer = buffer
         Me.caption = caption
         Me.menuItems = menuItems
+        Me.lines = lines
     End Sub
 
     Public Sub Refresh() Implements IUIState.Refresh
         buffer.Fill(MagentaBlock)
-        Dim y = buffer.Rows \ 2 - menuItemIndex
+        Dim centerY = (buffer.Rows - (lines.Length + 1)) \ 2
+        Dim y = centerY - menuItemIndex
         For Each menuItem In menuItems
-            If y > 0 AndAlso y < buffer.Rows Then
+            If y > lines.Length AndAlso y < buffer.Rows Then
                 buffer.WriteCenteredText(y, menuItem.Text)
             End If
             y += 1
         Next
-        buffer.Invert(0, buffer.Rows \ 2, buffer.Columns, 1)
+        y = 1
+        For Each line In lines
+            buffer.WriteCenteredText(y, line)
+            y += 1
+        Next
+        buffer.Invert(0, centerY, buffer.Columns, 1)
         buffer.WriteCenteredText(0, caption)
         buffer.Invert(0, 0, buffer.Columns, 1)
-        'TODO: bottom controls?
     End Sub
 
     Public Function HandleCommand(command As String) As IUIState Implements IUIState.HandleCommand

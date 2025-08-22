@@ -8,7 +8,7 @@ Friend Class DialogState
     Private ReadOnly dialog As Business.IDialog
 
     Public Sub New(buffer As IUIBuffer(Of Integer), world As Business.IWorld, playSfx As Action(Of String), dialog As Business.IDialog)
-        MyBase.New(buffer, dialog.Caption, dialog.Choices.ToArray)
+        MyBase.New(buffer, dialog.Caption, dialog.Lines.ToArray, dialog.Choices.ToArray)
         Me.world = world
         Me.playSfx = playSfx
         Me.dialog = dialog

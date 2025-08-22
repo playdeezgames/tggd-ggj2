@@ -13,7 +13,7 @@ Friend Class ConfirmState
                   caption As String,
                   confirmDialog As Func(Of IUIState),
                   cancelDialog As Func(Of IUIState))
-        MyBase.New(buffer, caption, {(NO_IDENTIFIER, NO_TEXT), (YES_IDENTIFIER, YES_TEXT)})
+        MyBase.New(buffer, caption, {}, {(NO_IDENTIFIER, NO_TEXT), (YES_IDENTIFIER, YES_TEXT)})
         Me.confirmDialog = confirmDialog
         Me.cancelDialog = cancelDialog
     End Sub

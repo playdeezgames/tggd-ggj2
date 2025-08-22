@@ -28,6 +28,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
+        Get
+            Return Array.Empty(Of String)
+        End Get
+    End Property
+
     Public Function Choose(choice As String) As IDialog Implements IDialog.Choose
         Select Case choice
             Case NEVER_MIND_CHOICE
