@@ -37,6 +37,14 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
         End If
     End Sub
 
+    Public Sub SetStatisticMinimum(statisticType As String, value As Integer) Implements IEntity.SetStatisticMinimum
+        If value = Integer.MinValue Then
+            EntityData.StatisticMinimums.Remove(statisticType)
+        Else
+            EntityData.StatisticMinimums(statisticType) = value
+        End If
+    End Sub
+
     Protected MustOverride ReadOnly Property EntityData As TEntityData
     Public ReadOnly Property World As IWorld Implements IEntity.World
         Get

@@ -8,6 +8,8 @@
     Public Overrides Sub OnInitialize(character As ICharacter)
         character.SetMetadata(MetadataType.Name, "ADELINE")
         character.World.Avatar = character
+        character.SetStatistic(StatisticType.Money, 0)
+        character.SetStatisticMinimum(StatisticType.Money, 0)
     End Sub
 
     Public Overrides Function CanSpawn(location As ILocation) As Boolean

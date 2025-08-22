@@ -4,4 +4,5 @@
     Sub SetMetadata(metadataType As String, value As String)
     Function GetStatistic(statisticType As String) As Integer
     Sub SetStatistic(statisticType As String, value As Integer?)
+    Sub SetStatisticMinimum(statisticType As String, value As Integer)
 End Interface
