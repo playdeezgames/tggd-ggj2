@@ -10,9 +10,6 @@
     End Function
 
     Public Overrides Function Perform(character As ICharacter) As IDialog
-        character.ChangeStatistic(StatisticType.Money, 1)
-        character.World.ChangeStatistic(StatisticType.Hour, 1)
-        character.AddMessage("YOU DO SOME CHORES!", "YOU EARN $1", $"YOU HAVE ${character.GetStatistic(StatisticType.Money)}")
-        Return Nothing
+        Return New DoChoresDialog(character)
     End Function
 End Class
