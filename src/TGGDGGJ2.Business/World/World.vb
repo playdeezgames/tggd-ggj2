@@ -98,4 +98,8 @@ Public Class World
         result.Initialize()
         Return result
     End Function
+
+    Public Function GetItem(itemId As Integer) As IItem Implements IWorld.GetItem
+        Return New Item(Data, itemId, PlaySfx)
+    End Function
 End Class
