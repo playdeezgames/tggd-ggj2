@@ -1,7 +1,7 @@
 ﻿Imports TGGDGGJ2.Data
 
 Public Class Location
-    Inherits Entity(Of LocationData)
+    Inherits InventoryEntity(Of LocationData)
     Implements ILocation
     Public Sub New(data As WorldData, locationId As Integer, playSfx As Action(Of String))
         MyBase.New(data, playSfx)

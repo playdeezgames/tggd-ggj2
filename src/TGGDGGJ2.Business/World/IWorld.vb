@@ -10,4 +10,5 @@ Public Interface IWorld
     ReadOnly Property HasMessage As Boolean
     Sub DismissMessage()
     ReadOnly Property CurrentMessage As IMessage
+    Function CreateItem(itemType As String) As IItem
 End Interface

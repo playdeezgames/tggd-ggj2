@@ -1,5 +1,5 @@
 ﻿Public Interface ICharacter
-    Inherits IEntity
+    Inherits IInventoryEntity
     ReadOnly Property CharacterId As Integer
     ReadOnly Property CharacterType As String
     Property Location As ILocation

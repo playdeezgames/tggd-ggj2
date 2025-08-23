@@ -87,4 +87,15 @@ Public Class World
         location.AddCharacter(result)
         Return result
     End Function
+
+    Public Function CreateItem(itemType As String) As IItem Implements IWorld.CreateItem
+        Dim itemId = EntityData.Items.Count
+        EntityData.Items.Add(New ItemData With
+                                 {
+                                    .ItemType = itemType
+                                 })
+        Dim result As IItem = New Item(Data, itemId, PlaySfx)
+        result.Initialize()
+        Return result
+    End Function
 End Class

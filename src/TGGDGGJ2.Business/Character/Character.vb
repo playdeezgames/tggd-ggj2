@@ -1,7 +1,7 @@
 ﻿Imports TGGDGGJ2.Data
 
 Public Class Character
-    Inherits Entity(Of CharacterData)
+    Inherits InventoryEntity(Of CharacterData)
     Implements ICharacter
 
     Public Sub New(data As WorldData, characterId As Integer, playSfx As Action(Of String))

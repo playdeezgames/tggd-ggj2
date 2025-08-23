@@ -7,7 +7,8 @@ Friend Module VerbTypes
             New GoHomeVerbTypeDescriptor(),
             New GoToStoreVerbTypeDescriptor(),
             New StatisticsVerbTypeDescriptor(),
-            New DoChoresVerbTypeDescriptor()
+            New DoChoresVerbTypeDescriptor(),
+            New GoToBedVerbTypeDescriptor()
         }.ToDictionary(Function(x) x.VerbType, Function(x) x)
     Friend ReadOnly Property All As IEnumerable(Of String)
         Get

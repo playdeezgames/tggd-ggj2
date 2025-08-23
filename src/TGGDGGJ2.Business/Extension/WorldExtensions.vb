@@ -11,6 +11,16 @@ Public Module WorldExtensions
         world.SetStatisticMaximum(StatisticType.Hour, 22)
         InitializeLocations(world)
         InitializeCharacters(world)
+        InitializeItems(world)
+    End Sub
+
+    Private Sub InitializeItems(world As IWorld)
+        For Each itemType In ItemTypes.All
+            Dim descriptor = itemType.ToItemTypeDescriptor
+            For Each dummy In Enumerable.Range(0, descriptor.ItemCount)
+                world.CreateItem(itemType)
+            Next
+        Next
     End Sub
 
     Private Sub InitializeCharacters(world As IWorld)

@@ -1,5 +1,5 @@
 ﻿Public Class CharacterData
-    Inherits EntityData
+    Inherits InventoryEntityData
     Public Property CharacterType As String
     Public Property LocationId As Integer
 End Class
