@@ -4,6 +4,7 @@ Friend Class SquishmallowItemTypeDescriptor
     Inherits ItemTypeDescriptor
 
     Shared ReadOnly namesRemaining As New HashSet(Of String)(SquishmallowNames.Names)
+    ReadOnly namePrices As New Dictionary(Of String, Integer)
 
     Public Sub New()
         MyBase.New(
@@ -16,10 +17,12 @@ Friend Class SquishmallowItemTypeDescriptor
         If namesRemaining.Any Then
             name = RNG.FromEnumerable(namesRemaining)
             namesRemaining.Remove(name)
+            namePrices(name) = RNG.RollXDY(5, 3)
         Else
             name = RNG.FromEnumerable(SquishmallowNames.Names)
         End If
         item.SetMetadata(MetadataType.Name, name)
+        item.SetStatistic(StatisticType.Price, namePrices(name))
         Dim location = RNG.FromEnumerable(item.World.Locations.Where(Function(x) x.LocationType = LocationType.Store))
         location.AddItem(item)
     End Sub

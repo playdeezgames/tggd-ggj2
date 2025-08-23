@@ -166,7 +166,6 @@
             "Ari the Dinosaur",
             "Ari the Leopard",
             "Aria the Unicorn",
-            "Aria the Unicorn (Justice version)",
             "Ariana the Witch",
             "Arianna the Fox",
             "Arilla the Armadillo",
