@@ -215,5 +215,5 @@
             "Aziza the Stingray",
             "Azizbek the Red Onion",
             "Azizi the Dragon"
-        }
+        }.Select(Function(x) x.ToUpper).ToList
 End Module

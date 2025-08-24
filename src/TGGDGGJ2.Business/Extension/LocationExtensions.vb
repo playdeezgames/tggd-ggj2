@@ -15,7 +15,7 @@ Public Module LocationExtensions
     End Function
     <Extension>
     Public Function GetDisplayName(location As ILocation) As String
-        Return location.GetName().ToUpper
+        Return location.GetName()
     End Function
     <Extension>
     Public Function IsOpen(location As ILocation) As Boolean

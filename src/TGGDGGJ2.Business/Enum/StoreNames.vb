@@ -14,5 +14,5 @@
             "Plush Patch",
             "Fuzzle Finds",
             "Squishmallow Sanctuary"
-        }
+        }.Select(Function(x) x.ToUpper).ToList
 End Module

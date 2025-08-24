@@ -17,7 +17,7 @@ Friend Class BuyItemDialog
 
     Public ReadOnly Property Caption As String Implements IDialog.Caption
         Get
-            Return item.GetMetadata(MetadataType.Name).ToUpper
+            Return item.GetMetadata(MetadataType.Name)
         End Get
     End Property
 
