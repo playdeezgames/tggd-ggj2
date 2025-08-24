@@ -18,6 +18,7 @@ Friend Class StoreLocationTypeDescriptor
         location.SetMetadata(MetadataType.Name, RNG.FromEnumerable(candidates))
         location.SetStatistic(Business.StatisticType.OpenHour, RNG.FromRange(6, 10))
         location.SetStatistic(Business.StatisticType.CloseHour, RNG.FromRange(17, 22))
+        location.SetStatisticMinimum(Business.StatisticType.Stock, (SquishmallowNames.Count * 2 \ StoreNames.Names.Count))
     End Sub
 
     Public Overrides Function Describe(location As ILocation) As IEnumerable(Of String)

@@ -14,16 +14,20 @@ Friend Class SquishmallowItemTypeDescriptor
 
     Friend Overrides Sub OnInitialize(item As Item)
         Dim name As String
+        Dim assignLocation As Boolean = False
         If namesRemaining.Any Then
             name = RNG.FromEnumerable(namesRemaining)
             namesRemaining.Remove(name)
             namePrices(name) = RNG.RollXDY(5, 3)
+            assignLocation = True
         Else
             name = RNG.FromEnumerable(SquishmallowNames.Names)
         End If
         item.SetMetadata(MetadataType.Name, name)
         item.SetStatistic(StatisticType.Price, namePrices(name))
-        Dim location = RNG.FromEnumerable(item.World.Locations.Where(Function(x) x.LocationType = LocationType.Store))
-        location.AddItem(item)
+        If assignLocation Then
+            Dim location = RNG.FromEnumerable(item.World.Locations.Where(Function(x) x.LocationType = LocationType.Store))
+            location.AddItem(item)
+        End If
     End Sub
 End Class

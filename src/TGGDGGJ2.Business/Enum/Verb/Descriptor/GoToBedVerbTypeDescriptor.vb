@@ -14,9 +14,7 @@
 
     Public Overrides Function Perform(character As ICharacter) As IDialog
         Dim world = character.World
-        world.ChangeStatistic(StatisticType.Day, 1)
-        world.SetStatistic(StatisticType.Hour, world.GetStatisticMinimum(StatisticType.Hour))
-        character.AddMessage("YOU SLEEP UNTIL MORNING.")
+        world.NextDay()
         Return Nothing
     End Function
 End Class

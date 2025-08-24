@@ -24,4 +24,13 @@ Public Module LocationExtensions
         Dim currentHour = location.World.GetStatistic(StatisticType.Hour)
         Return currentHour >= openHour AndAlso currentHour < closeHour
     End Function
+    <Extension>
+    Friend Sub Restock(location As ILocation)
+        If location.LocationType <> LocationType.Store Then
+            Return
+        End If
+        While location.ItemCount < location.GetStatisticMinimum(StatisticType.Stock)
+            location.AddItem(location.World.CreateItem(ItemType.Squishmallow))
+        End While
+    End Sub
 End Module

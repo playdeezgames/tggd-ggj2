@@ -5,4 +5,5 @@
     Public ReadOnly Money As String = NameOf(Money)
     Public ReadOnly OpenHour As String = NameOf(OpenHour)
     Public ReadOnly Price As String = NameOf(Price)
+    Public ReadOnly Stock As String = NameOf(Stock)
 End Module

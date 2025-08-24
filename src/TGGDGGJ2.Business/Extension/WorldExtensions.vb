@@ -12,6 +12,7 @@ Public Module WorldExtensions
         InitializeLocations(world)
         InitializeCharacters(world)
         InitializeItems(world)
+        world.RestockStores()
     End Sub
 
     Private Sub InitializeItems(world As IWorld)
@@ -37,6 +38,20 @@ Public Module WorldExtensions
             For Each dummy In Enumerable.Range(0, descriptor.LocationCount)
                 world.CreateLocation(locationType)
             Next
+        Next
+    End Sub
+    <Extension>
+    Friend Sub NextDay(world As IWorld)
+        world.ChangeStatistic(StatisticType.Day, 1)
+        world.SetStatistic(StatisticType.Hour, world.GetStatisticMinimum(StatisticType.Hour))
+        RestockStores(world)
+        world.Avatar.AddMessage("YOU SLEEP UNTIL MORNING.")
+    End Sub
+
+    <Extension>
+    Private Sub RestockStores(world As IWorld)
+        For Each location In world.Locations.Where(Function(x) x.LocationType = LocationType.Store)
+            location.Restock()
         Next
     End Sub
 End Module
