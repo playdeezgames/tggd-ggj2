@@ -4,7 +4,8 @@
     Public Sub New()
         MyBase.New(
             Business.VerbType.GoToBed,
-            "GO TO BED")
+            "GO TO BED",
+            1)
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean

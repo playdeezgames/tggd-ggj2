@@ -2,7 +2,10 @@
     Inherits VerbTypeDescriptor
 
     Public Sub New()
-        MyBase.New(Business.VerbType.GoToStore, "GO TO STORE")
+        MyBase.New(
+            Business.VerbType.GoToStore,
+            "GO TO STORE",
+            1)
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean
