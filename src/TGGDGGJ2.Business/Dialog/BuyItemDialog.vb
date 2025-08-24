@@ -17,7 +17,7 @@ Friend Class BuyItemDialog
 
     Public ReadOnly Property Caption As String Implements IDialog.Caption
         Get
-            Return item.GetMetadata(MetadataType.Name)
+            Return item.GetName
         End Get
     End Property
 
@@ -35,8 +35,10 @@ Friend Class BuyItemDialog
 
     Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
         Get
+            Dim ownedCount = character.Items.Count(Function(x) x.ItemType = ItemType.Squishmallow AndAlso x.GetName = item.GetName)
             Dim result As New List(Of String) From {
-                $"PRICE: ${item.GetStatistic(StatisticType.Price)}"
+                $"PRICE: ${item.GetStatistic(StatisticType.Price)}",
+                $"YOU OWN {ownedCount}"
             }
             Return result
         End Get
@@ -50,7 +52,7 @@ Friend Class BuyItemDialog
                 character.Location.RemoveItem(item)
                 character.AddItem(item)
                 character.ChangeStatistic(StatisticType.Money, item.GetStatistic(StatisticType.Price))
-                character.AddMessage({$"YOU BOUGHT", $"{item.GetMetadata(MetadataType.Name)}!"})
+                character.AddMessage({$"YOU BOUGHT", $"{item.GetName}!"})
                 Return Nothing
             Case Else
                 Throw New NotImplementedException

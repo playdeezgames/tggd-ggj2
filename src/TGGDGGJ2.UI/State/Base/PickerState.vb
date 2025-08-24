@@ -20,7 +20,7 @@ Friend MustInherit Class PickerState
 
     Public Sub Refresh() Implements IUIState.Refresh
         buffer.Fill(MagentaBlock)
-        Dim centerY = (buffer.Rows - (lines.Length + 1)) \ 2
+        Dim centerY = (buffer.Rows - (lines.Length + 1)) \ 2 + lines.Length + 1
         Dim y = centerY - menuItemIndex
         For Each menuItem In menuItems
             If y > lines.Length AndAlso y < buffer.Rows Then

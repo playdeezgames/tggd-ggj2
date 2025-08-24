@@ -11,6 +11,6 @@ Public Module CharacterExtensions
     End Sub
     <Extension>
     Public Function UniqueSquishmallowCount(character As ICharacter) As Integer
-        Return character.Items.Where(Function(x) x.ItemType = ItemType.Squishmallow).GroupBy(Function(x) x.GetMetadata(MetadataType.Name)).Count
+        Return character.Items.Where(Function(x) x.ItemType = ItemType.Squishmallow).GroupBy(Function(x) x.GetName).Count
     End Function
 End Module

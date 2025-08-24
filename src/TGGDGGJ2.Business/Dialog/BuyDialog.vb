@@ -20,7 +20,7 @@
             Dim result As New List(Of (Choice As String, Text As String)) From {
                 (NEVER_MIND_CHOICE, NEVER_MIND_TEXT)
             }
-            result.AddRange(character.Location.Items.Select(Function(x) (x.ItemId.ToString(), x.GetMetadata(MetadataType.Name))))
+            result.AddRange(character.Location.Items.Select(Function(x) (x.ItemId.ToString(), x.GetName)))
             Return result
         End Get
     End Property
