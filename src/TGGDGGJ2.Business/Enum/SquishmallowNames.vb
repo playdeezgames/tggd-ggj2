@@ -216,4 +216,9 @@
             "Azizbek the Red Onion",
             "Azizi the Dragon"
         }.Select(Function(x) x.ToUpper).ToList
+    ReadOnly Property Count As Integer
+        Get
+            Return Names.Count
+        End Get
+    End Property
 End Module

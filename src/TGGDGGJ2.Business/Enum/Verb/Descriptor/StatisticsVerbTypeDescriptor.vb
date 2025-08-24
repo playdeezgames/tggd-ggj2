@@ -10,7 +10,9 @@
     End Function
 
     Public Overrides Function Perform(character As ICharacter) As IDialog
-        character.AddMessage($"MONEY: ${character.GetStatistic(StatisticType.Money)}")
+        character.AddMessage(
+            $"MONEY: ${character.GetStatistic(StatisticType.Money)}",
+            $"COLLECTION: {character.UniqueSquishmallowCount}/{SquishmallowNames.Count}")
         Return Nothing
     End Function
 End Class
