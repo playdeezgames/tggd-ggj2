@@ -1,4 +1,4 @@
-﻿Friend Class GoToStoreDialog
+﻿Friend Class InventoryDialog
     Inherits BaseDialog
     Implements IDialog
 
@@ -10,26 +10,25 @@
 
     Public ReadOnly Property Caption As String Implements IDialog.Caption
         Get
-            Return "WHICH STORE?"
+            Return "INVENTORY"
         End Get
     End Property
 
     Public ReadOnly Property Choices As IEnumerable(Of (Choice As String, Text As String)) Implements IDialog.Choices
         Get
-            Dim result As New List(Of (Choice As String, Text As String)) From
-                {
-                    (NEVER_MIND_CHOICE, NEVER_MIND_TEXT)
-                }
-            For Each storeLocation In character.World.Locations.Where(Function(x) x.LocationType = LocationType.Store AndAlso x.LocationId <> character.Location.LocationId).OrderBy(Function(x) x.GetName())
-                result.Add((storeLocation.GetName(), storeLocation.GetDisplayName()))
-            Next
+            Dim result As New List(Of (Choice As String, Text As String)) From {
+                (NEVER_MIND_CHOICE, NEVER_MIND_TEXT)
+            }
+            result.AddRange(character.Items.OrderBy(Function(x) x.GetName).Select(Function(x) (x.ItemId.ToString, x.GetName)))
             Return result
         End Get
     End Property
 
     Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
         Get
-            Return Array.Empty(Of String)
+            Return {
+                $"ITEM COUNT: {character.Items.Count}"
+                }
         End Get
     End Property
 
@@ -38,9 +37,7 @@
             Case NEVER_MIND_CHOICE
                 Return Nothing
             Case Else
-                Dim storeLocation = character.World.Locations.Single(Function(x) x.GetName() = choice)
-                character.Location = storeLocation
-                Return Nothing
+                Return New InventoryItemDialog(character, character.World.GetItem(CInt(choice)))
         End Select
     End Function
 End Class

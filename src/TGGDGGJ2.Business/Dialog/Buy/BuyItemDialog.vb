@@ -1,9 +1,8 @@
 ﻿Imports System.Reflection
 
 Friend Class BuyItemDialog
+    Inherits BaseDialog
     Implements IDialog
-    Shared ReadOnly NEVER_MIND_CHOICE As String = NameOf(NEVER_MIND_CHOICE)
-    Const NEVER_MIND_TEXT = "NEVER MIND"
     Shared ReadOnly BUY_CHOICE As String = NameOf(BUY_CHOICE)
     Const BUY_TEXT = "BUY!"
 
@@ -38,7 +37,8 @@ Friend Class BuyItemDialog
             Dim ownedCount = character.Items.Count(Function(x) x.ItemType = ItemType.Squishmallow AndAlso x.GetName = item.GetName)
             Dim result As New List(Of String) From {
                 $"PRICE: ${item.GetStatistic(StatisticType.Price)}",
-                $"YOU OWN {ownedCount}"
+                $"YOU OWN {ownedCount}",
+                $"MONEY: ${character.GetStatistic(StatisticType.Money)}"
             }
             Return result
         End Get
@@ -51,7 +51,7 @@ Friend Class BuyItemDialog
             Case BUY_CHOICE
                 character.Location.RemoveItem(item)
                 character.AddItem(item)
-                character.ChangeStatistic(StatisticType.Money, item.GetStatistic(StatisticType.Price))
+                character.ChangeStatistic(StatisticType.Money, -item.GetStatistic(StatisticType.Price))
                 character.AddMessage({$"YOU BOUGHT", $"{item.GetName}!"})
                 Return Nothing
             Case Else

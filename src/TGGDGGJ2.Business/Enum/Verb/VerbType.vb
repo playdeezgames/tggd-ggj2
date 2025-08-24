@@ -4,5 +4,6 @@
     Public ReadOnly GoHome As String = NameOf(GoHome)
     Public ReadOnly GoToBed As String = NameOf(GoToBed)
     Public ReadOnly GoToStore As String = NameOf(GoToStore)
+    Public ReadOnly Inventory As String = NameOf(Inventory)
     Public ReadOnly Statistics As String = NameOf(Statistics)
 End Module

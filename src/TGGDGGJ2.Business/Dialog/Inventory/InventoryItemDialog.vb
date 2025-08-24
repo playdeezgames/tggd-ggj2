@@ -1,17 +1,18 @@
-﻿Friend Class BuyDialog
+﻿Friend Class InventoryItemDialog
+    Inherits BaseDialog
     Implements IDialog
 
     Private ReadOnly character As ICharacter
-    Shared ReadOnly NEVER_MIND_CHOICE As String = NameOf(NEVER_MIND_CHOICE)
-    Const NEVER_MIND_TEXT = "NEVER MIND"
+    Private ReadOnly item As IItem
 
-    Public Sub New(character As ICharacter)
+    Public Sub New(character As ICharacter, item As IItem)
         Me.character = character
+        Me.item = item
     End Sub
 
     Public ReadOnly Property Caption As String Implements IDialog.Caption
         Get
-            Return "BUY..."
+            Return item.GetName
         End Get
     End Property
 
@@ -20,15 +21,15 @@
             Dim result As New List(Of (Choice As String, Text As String)) From {
                 (NEVER_MIND_CHOICE, NEVER_MIND_TEXT)
             }
-            result.AddRange(character.Location.Items.Select(Function(x) (x.ItemId.ToString(), x.GetName)))
             Return result
         End Get
     End Property
 
     Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
         Get
+            Dim ownedCount = character.Items.Count(Function(x) x.ItemType = ItemType.Squishmallow AndAlso x.GetName = item.GetName)
             Return {
-                $"{character.Location.ItemCount} ITEMS AVAILABLE!"
+                $"YOU OWN {ownedCount}"
                 }
         End Get
     End Property
@@ -36,10 +37,9 @@
     Public Function Choose(choice As String) As IDialog Implements IDialog.Choose
         Select Case choice
             Case NEVER_MIND_CHOICE
-                Return Nothing
+                Return New InventoryDialog(character)
             Case Else
-                Dim itemId = CInt(choice)
-                Return New BuyItemDialog(character, character.World.GetItem(itemId))
+                Throw New NotImplementedException
         End Select
     End Function
 End Class
