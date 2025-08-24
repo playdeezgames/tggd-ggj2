@@ -5,7 +5,7 @@
         MyBase.New(
             Business.VerbType.DoChores,
             "DO CHORES",
-            1)
+            4)
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean

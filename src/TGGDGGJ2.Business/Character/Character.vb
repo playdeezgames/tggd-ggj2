@@ -33,7 +33,10 @@ Public Class Character
 
     Public ReadOnly Property AvailableVerbs As IEnumerable(Of (Identifier As String, Text As String)) Implements ICharacter.AvailableVerbs
         Get
-            Return VerbTypes.All.Where(Function(x) CanPerform(x)).Select(Function(x) (x, x.ToVerbTypeDescriptor.Caption))
+            Return VerbTypes.All.
+                Where(Function(x) CanPerform(x)).
+                OrderBy(Function(x) x.ToVerbTypeDescriptor.Ordinal).
+                Select(Function(x) (x, x.ToVerbTypeDescriptor.Caption))
         End Get
     End Property
 

@@ -5,7 +5,7 @@
         MyBase.New(
             Business.VerbType.GoToStore,
             "GO TO STORE",
-            1)
+            2)
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean

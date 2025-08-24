@@ -5,7 +5,7 @@
         MyBase.New(
             Business.VerbType.Statistics,
             "STATISTICS",
-            1)
+            3)
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean
