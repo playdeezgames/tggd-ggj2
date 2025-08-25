@@ -34,7 +34,7 @@ Friend Class BuyItemDialog
 
     Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
         Get
-            Dim ownedCount = character.Items.Count(Function(x) x.ItemType = ItemType.Squishmallow AndAlso x.GetName = item.GetName)
+            Dim ownedCount = character.GetOwnedSquichmallowCount(item.GetName)
             Dim result As New List(Of String) From {
                 $"PRICE: ${item.GetStatistic(StatisticType.Price)}",
                 $"YOU OWN {ownedCount}",
