@@ -19,7 +19,7 @@
             Dim result As New List(Of (Choice As String, Text As String)) From {
                 (NEVER_MIND_CHOICE, NEVER_MIND_TEXT)
             }
-            result.AddRange(character.Location.Items.OrderBy(Function(x) x.GetName).Select(Function(x) (x.ItemId.ToString(), x.GetName)))
+            result.AddRange(character.Location.Items.OrderBy(Function(x) x.GetName).Select(Function(x) (x.ItemId.ToString(), $"{x.GetName}(${x.GetStatistic(StatisticType.Price)})")))
             Return result
         End Get
     End Property
@@ -27,7 +27,8 @@
     Public ReadOnly Property Lines As IEnumerable(Of String) Implements IDialog.Lines
         Get
             Return {
-                $"{character.Location.ItemCount} ITEMS AVAILABLE!"
+                $"{character.Location.ItemCount} ITEMS AVAILABLE!",
+                $"MONEY: ${character.GetStatistic(StatisticType.Money)}"
                 }
         End Get
     End Property

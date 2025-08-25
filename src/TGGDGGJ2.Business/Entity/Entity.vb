@@ -74,6 +74,18 @@ Public MustInherit Class Entity(Of TEntityData As EntityData)
         Return GetStatistic(statisticType)
     End Function
 
+    Public Function HasFlag(flagType As String) As Boolean Implements IEntity.HasFlag
+        Return EntityData.Flags.Contains(flagType)
+    End Function
+
+    Public Sub SetFlag(flagType As String, flagValue As Boolean) Implements IEntity.SetFlag
+        If flagValue Then
+            EntityData.Flags.Add(flagType)
+        Else
+            EntityData.Flags.Remove(flagType)
+        End If
+    End Sub
+
     Protected MustOverride ReadOnly Property EntityData As TEntityData
     Public ReadOnly Property World As IWorld Implements IEntity.World
         Get

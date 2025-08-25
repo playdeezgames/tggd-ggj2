@@ -12,7 +12,8 @@
     Public Overrides Function Describe(location As ILocation) As IEnumerable(Of String)
         Return {
             "HOME IS WHERE YOU KEEP YER",
-            "SQUISHMALLOWS."
+            "SQUISHMALLOWS.",
+            "BEDTIME: HOUR 22"
             }
     End Function
 End Class

@@ -9,4 +9,6 @@
     Function GetStatisticMinimum(statisticType As String) As Integer
     Function GetStatisticMaximum(statisticType As String) As Integer
     Function ChangeStatistic(statisticType As String, delta As Integer) As Integer
+    Function HasFlag(flagType As String) As Boolean
+    Sub SetFlag(flagType As String, flagValue As Boolean)
 End Interface

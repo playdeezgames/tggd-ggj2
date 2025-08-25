@@ -45,6 +45,7 @@ Public Module WorldExtensions
         world.ChangeStatistic(StatisticType.Day, 1)
         world.SetStatistic(StatisticType.Hour, world.GetStatisticMinimum(StatisticType.Hour))
         world.Avatar.ChangeStatistic(StatisticType.DaysSinceGift, 1)
+        world.Avatar.SetFlag(FlagType.BeggedParentsToday, False)
         RestockStores(world)
         world.Avatar.AddMessage("YOU SLEEP UNTIL MORNING.")
     End Sub

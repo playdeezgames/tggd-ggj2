@@ -26,9 +26,8 @@ Friend Class EmbarkState
         buffer.WriteText((0, 8), "YOU WILL HAVE TO FIND A WAY TO")
         buffer.WriteText((0, 9), "EARN MONEY, OR CONVINCE OTHERS")
         buffer.WriteText((0, 10), "TO BUY THEM FOR YOU!")
-        buffer.WriteText((0, 11), "")
-        buffer.WriteText((0, 12), "MAYBE YOU CAN TRADE SOME WITH")
-        buffer.WriteText((0, 13), "YER FRIENDS, IF YOU HAVE SOME.")
+        buffer.WriteText((0, 12), "IF YOU WIND UP WITH DUPLICATES,")
+        buffer.WriteText((0, 13), "YOU CAN SELL THEM ON SQUEEBAY.")
         buffer.WriteInvertedCenteredText(buffer.Rows - 1, "<ACTION>")
     End Sub
 

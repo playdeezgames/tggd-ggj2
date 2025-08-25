@@ -8,7 +8,9 @@ Friend Class BegParentsVerbTypeDescriptor
     End Sub
 
     Public Overrides Function CanPerform(character As ICharacter) As Boolean
-        Return character.Location.LocationType = LocationType.Home AndAlso character.GetStatistic(StatisticType.DaysSinceGift) > 0
+        Return character.Location.LocationType = LocationType.Home AndAlso
+            character.GetStatistic(StatisticType.DaysSinceGift) > 0 AndAlso
+            Not character.HasFlag(FlagType.BeggedParentsToday)
     End Function
 
     Public Overrides Function Perform(character As ICharacter) As IDialog
@@ -21,6 +23,7 @@ Friend Class BegParentsVerbTypeDescriptor
         Else
             character.AddMessage($"SORRY, WE GOT YOU ONE", $"{daysSinceGift} DAY{If(daysSinceGift > 1, "S", "")} AGO!")
         End If
+        character.SetFlag(FlagType.BeggedParentsToday, True)
         Return Nothing
     End Function
 End Class
