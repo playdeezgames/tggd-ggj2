@@ -10,6 +10,7 @@
         character.World.Avatar = character
         character.SetStatistic(StatisticType.Money, 0)
         character.SetStatisticMinimum(StatisticType.Money, 0)
+        character.SetStatistic(StatisticType.DaysSinceGift, 13)
     End Sub
 
     Public Overrides Function CanSpawn(location As ILocation) As Boolean

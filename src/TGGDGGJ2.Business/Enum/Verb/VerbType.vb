@@ -1,4 +1,5 @@
 ﻿Public Module VerbType
+    Public ReadOnly BegParents As String = NameOf(BegParents)
     Public ReadOnly Buy As String = NameOf(Buy)
     Public ReadOnly DoChores As String = NameOf(DoChores)
     Public ReadOnly GoHome As String = NameOf(GoHome)

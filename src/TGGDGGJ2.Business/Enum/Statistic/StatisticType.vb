@@ -6,4 +6,5 @@
     Public ReadOnly OpenHour As String = NameOf(OpenHour)
     Public ReadOnly Price As String = NameOf(Price)
     Public ReadOnly Stock As String = NameOf(Stock)
+    Public ReadOnly DaysSinceGift As String = NameOf(DaysSinceGift)
 End Module
